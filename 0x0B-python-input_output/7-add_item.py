@@ -1,18 +1,28 @@
 #!/usr/bin/python3
-''' script that adds all arguments to a Python list, and then save them to a file
-'''
-import json
-import sys
+"""Module 2-read_lines.
+Reads a certain number of lines from a file.
+"""
 
-save_to_json_file = __import__('7-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('8-load_from_json_file').load_from_json_file
 
-filename = "add_item.json"
-try:
-    py_list = load_from_json_file(filename)
-except FileNotFoundError:
-    py_list = []
-finally:
-    for el in sys.argv[1:]:
-        py_list.append(str(el))
-    save_to_json_file(py_list, filename)
+def read_lines(filename="", nb_lines=0):
+    """Reads and prints nb_lines lines from filename.
+    Args:
+        - filename: name of the file
+        - nb_lines: number of lines to read
+    """
+
+    with open(filename) as f:
+        i = 0
+        count = 0
+        for line in f:
+            count += 1
+        f.seek(0)
+        if nb_lines <= 0 or nb_lines >= count:
+            read_text = f.read()
+            print(read_text, end="")
+        else:
+            for line in f:
+                print(line, end='')
+                i += 1
+                if i == nb_lines:
+                    break
