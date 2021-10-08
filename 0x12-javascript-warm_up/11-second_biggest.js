@@ -1,8 +1,11 @@
 #!/usr/bin/node
-if (process.argv.length <= 3) {
-  console.log('0');
-} else {
-  const arr = process.argv.slice(2).map(Number);
-  const second = arr.sort(function (a, b) { return b - a; })[1];
-  console.log(second);
+// This script that searches the second biggest integer in the list of arguments.
+
+'use strict';
+let nextMax = 0;
+const args = process.argv.slice(2);
+if (args.length > 1) {
+  args.sort();
+  nextMax = args[args.length - 2];
 }
+console.log(nextMax);
